@@ -206,7 +206,10 @@ NavSatTransform::NavSatTransform(const rclcpp::NodeOptions & options)
   if (publish_gps_) {
     filtered_gps_pub_ =
       this->create_publisher<sensor_msgs::msg::NavSatFix>(
-      "gps/filtered", rclcpp::QoS(10), publisher_options);
+      // "gps/filtered", rclcpp::QoS(10), publisher_options);
+      "gps/filtered",
+      rclcpp::SensorDataQoS(),
+      publisher_options);
   }
 
   // Sleep for the parameterized amount of time, to give
